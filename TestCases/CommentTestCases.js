@@ -2,7 +2,7 @@ var superagent = require('superagent');
 var expect = require('expect.js');
 var app = require('../app.js').app;
 
-
+///hi Just for merging
 describe('test create comment', function() {
 	it('post object', function(done) {
 		superagent.post('http://localhost:3000/category/1/product/2/offer/e7717/comment').send({
