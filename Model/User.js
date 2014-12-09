@@ -32,9 +32,8 @@ User.prototype.viewCustomers = function(callback,request)
 };
 
 User.prototype.createUser = function(callback,request)
-{
-	
-	console.log("signUp function ");
+{	
+	console.log("signUp function "+request.emailId);
 	userobj.createUser(function(err,res) {
 		callback(err,res);
 		
@@ -45,12 +44,12 @@ User.prototype.createUser = function(callback,request)
 
 User.prototype.updateUser = function(callback,request)
 {
-	console.log("Update User function ");
+	console.log("Update User function "+request.mobile);
 	userobj.updateUser(function(err,res) {
 		
 		callback(err,res);
 		
-	},request.emailId,request.fname,request.lname,request.password,request.mobileNum);
+	},request.userId,request.emailId,request.firstName,request.lastName,request.mobile);
 
 };
 

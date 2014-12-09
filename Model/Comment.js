@@ -12,10 +12,10 @@ function Comment() {
 
 Comment.prototype.postComment = function(callback,params,request)
 {
-	console.log("post comment function"+request.comment);
+	console.log("post comment function: "+params.offerId);
 	commentobj.postComment(function(err,res) {
 		callback(err,res);
-	},params.offerId, request.comment);
+	},params.offerId, request.comment, request.userId);
 
 };
 

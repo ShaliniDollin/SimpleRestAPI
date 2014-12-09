@@ -1,21 +1,20 @@
-var movieDao = require("../DatabaseConnections/MovieDao");
-var movieObj = new movieDao();
-var assert = require("assert");
+var superagent = require('superagent');
+var expect = require('expect.js');
 
-describe('Movie', function(){
-	  describe('listMovies()', function(){
-	    it('should list movies without error', function(done){
-	       	movieObj.listMovies(function(err, rows){
-	        if (err) throw err;
-	        console.log(" no error");
-	       // for(var i = 0; i < rows.length; i++) {
-	        	
-	        	var name = rows[1].Name;
-	        	console.log(name);
-	        	assert.equal("test abc",name);
-	       // }
-	        done();
-	      });
-	    });
-	  });
+describe('express rest api server', function() {
+
+	it('post object', function(done) {
+		superagent.post('http://localhost:3000/users').send({
+			emailId : 'John3',
+			firstName : 'joh3',
+			lastName : 'last3',
+			mobile : '1233'
+		}).end(function(e, res) {
+			expect(res.body.emailId).to.eql('John3');
+			done();
+		});
+	});
+
 });
+
+describe('express rest api server', function() {')

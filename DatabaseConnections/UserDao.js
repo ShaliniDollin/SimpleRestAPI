@@ -43,18 +43,19 @@ UserDao.prototype.viewCustomers = function(callback, username, password){
 	
 };
 
-UserDao.prototype.updateUser = function(callback,emailID, fname, lname, password, mobileNum){
+UserDao.prototype.updateUser = function(callback,userID, emailID, fname, lname,mobileNum){
 	
 	UserModel.count({emailId: emailID}, function(err, emailExists)
 	{
+		console.log("emailID is"+emailID);
 		if(emailExists == 0){
 			  callback('User does not exixts',null);
 		}else{
 	
 		UserModel.findOne({emailId:emailID},function( err, users ) {
+			users.emailId=emailID;
 			 users.fname = fname;
 		       users.lname=  lname;
-		        users.password =  password;
 		        users.mobileNum = mobileNum;
 		        
 		        users.save( function( err,users ) {
@@ -76,7 +77,7 @@ UserDao.prototype.updateUser = function(callback,emailID, fname, lname, password
 
 UserDao.prototype.createUser = function(callback, emailID, fname, lname, mobileNum){
 	//var userCount;
-	
+	console.log("user"+emailID+fname+lname+mobileNum);
 	 UserModel.count({emailId: emailID}, function(err, emailExists)
 	 {
 			 if(emailExists == 0){

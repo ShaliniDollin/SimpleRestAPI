@@ -5,11 +5,9 @@ var Category = require('../Model/Category');
 var offer = require('../Model/Offer');
 var ejs = require("ejs");
 
-//hadrcoded value. we need to get the value from session
-
 
 exports.index = function(req, res){
-	res.render('WelcomePage');
+	res.end('Welcome to Freedor website!!');
 
 };
 
@@ -46,8 +44,8 @@ exports.createuser =function(req,res){
 		}
 
 	},req.body);
-	console.log("Username"+ req.param('userName'));
-	console.log("Username"+ req.param('password'));
+	console.log("Username"+ req.param('emailId'));
+	//console.log("Username"+ req.param('password'));
 };
 
 
@@ -170,7 +168,7 @@ exports.removeProduct = function(req,res){
 		}else{
 			//return number of rows that deleted
 			console.log("return "+result);
-			res.json({});
+			res.json(result);
 		}
 
 	}, req.params.productId,req.params.categoryId);
@@ -197,7 +195,7 @@ exports.getProductById = function(req,res){
 };
 
 exports.getProductsBycatId = function(req,res){
-	console.log("In get Product by id"+req.params.categoryId);
+	console.log("In get Product by id: "+req.params.categoryId);
 	var newProduct = new Product();
 	newProduct.getProductsBycatId(function(err,result){
 		if(err){
@@ -208,7 +206,7 @@ exports.getProductsBycatId = function(req,res){
 		}else{
 			//return number of rows that deleted
 			console.log("return "+result);
-			res.json({'products':result});
+			res.json(result);
 		}
 
 	}, req.params.categoryId);
@@ -243,7 +241,7 @@ exports.viewCategories =function(req,res){
 			throw(err);
 		}else
 		{
-			res.json({'categories':result});
+			res.json(result);
 		}
 
 	},req.body);
@@ -306,7 +304,7 @@ exports.byofferid =function(req,res){
 	console.log("view offers by offerid");
 	var newOffer = new offer();
 
-	newOffer.byofferid(function(err,result) {
+	newOffer.byofferId(function(err,result) {
 		if(err){
 			console.log("Error"+err);
 			throw(err);
@@ -323,7 +321,7 @@ exports.byproductid =function(req,res){
 	console.log("view offers by product id");
 	var newOffer = new offer();
 
-	newOffer.viewOffers(function(err,result) {
+	newOffer.byproductid(function(err,result) {
 		if(err){
 			console.log("Error"+err);
 			throw(err);
@@ -363,7 +361,7 @@ exports.removeOffer = function(req,res){
 		}else{
 			//return number of rows that deleted
 			console.log("return "+result);
-			res.json({});
+			res.json(result);
 		}
 
 	}, req.params.productId,req.params.categoryId,req.params.offerId);
@@ -372,7 +370,7 @@ exports.removeOffer = function(req,res){
 
 //comment
 exports.postComment =function(req,res){
-	console.log("Post Comment");
+	console.log("Post Comment",+req.params);
 	var  newcomment = new comment();
 	newcomment.postComment(function(err,result) {
 		if(err){

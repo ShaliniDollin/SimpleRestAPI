@@ -19,7 +19,7 @@ Offer.prototype.viewOffers = function(callback,categoryId)
 	},categoryId);
 
 };
-Offer.prototype.byproductId = function(callback,productId,categoryId)
+Offer.prototype.byproductid = function(callback,productId,categoryId)
 {
 
 	console.log("view Offers function ");

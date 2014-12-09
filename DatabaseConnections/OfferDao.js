@@ -5,9 +5,9 @@ var mongoose = require('mongoose');
 //autoIncrement.initialize(db);
 var ProductDao = require("../DatabaseConnections/ProductDao");
 var uuid = require('node-uuid');
-
+//var cmt = require("../DatabaseConnections/CommentDao");
 var CommentSchema = new mongoose.Schema({
-	CommentId : Number,
+	CommentId : String,
 	Comment : String,
 	userId : String
 	});

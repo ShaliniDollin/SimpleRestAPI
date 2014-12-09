@@ -156,7 +156,7 @@ ProductDao.prototype.getProductById = function (callback, productId,categoryId){
 }
 ProductDao.prototype.getProductsBycatId = function (callback, categoryId){
 
-	console.log("in get product by id" +categoryId);
+	console.log("in get product by id: " +categoryId);
 	ProductModel.count({categoryId:categoryId}, function(err, categoryExists)
 	{
 	 if(categoryExists == 0){
@@ -166,7 +166,7 @@ ProductDao.prototype.getProductsBycatId = function (callback, categoryId){
 			ProductModel.find({categoryId:categoryId}, function( err, product) {
 		        
 		            if( !err ) {
-		            	console.log("no eror"+product.categoryId);
+		            	console.log("no eror"+ categoryId);
 		                callback(null,product);
 		            } else {
 		            	console.log(" eror");

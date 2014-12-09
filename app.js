@@ -1,8 +1,3 @@
-
-/**
- * Module dependencies.
- */
-
 var express = require('express');
 var routes = require('./routes');
 var http = require('http');
@@ -33,19 +28,24 @@ app.use(express.session({
 if ('development' === app.get('env')) {
   app.use(express.errorHandler());
 }
-
+//Freedor Website
 app.get('/', routes.index);
 
-// Customer Related
+/// catch 404 and forwarding to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Please check the URL again. Page does not exists!!');
+  err.status = 404;
+  next(err);
+});
 
-//app.get('/viewCustomers', routes.viewCustomers);
 
+//Additional Api's
 
-//app.post('/validateUser', routes.validateUser);
-
-
-//app.del('/removeuser/:emailId', routes.removeUser);
-//app.put('/updateuser', routes.updateuser);
+app.get('/viewCustomers', routes.viewCustomers);
+//app.put('/validateUser', routes.validateUser);
+app.del('/removeuser/:emailId', routes.removeUser);
+app.put('/updateuser', routes.updateuser);
+//user
 app.post('/users', routes.createuser);//checked
 app.get('/users/:userId', routes.getUserById);//checked
 
@@ -69,10 +69,7 @@ app.post('/category/:categoryId/product/:productId/offer', routes.createoffer);/
 app.get('/category/:categoryId/product/:productId/offer/:offerId', routes.byofferid);//checked
 app.put('/category/:categoryId/product/:productId/offer/:offerId', routes.updateoffer);//checked
 app.del('/category/:categoryId/product/:productId/offer/:offerId', routes.removeOffer);
-//app.get('/byproductid', routes.byproductid);
-//app.put('/byofferid', routes.byofferid);
 
-//app.post('/createoffer', routes.createoffer);
 //comment
 app.post('/category/:categoryId/product/:productId/offer/:offerId/comment', routes.postComment);
 app.get('/getCommentHistory', routes.getCommentHistory);
